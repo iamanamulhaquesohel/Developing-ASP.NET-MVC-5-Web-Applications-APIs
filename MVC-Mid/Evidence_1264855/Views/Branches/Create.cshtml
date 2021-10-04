@@ -1,0 +1,46 @@
+﻿@model Evidence_1264855.Models.Branches
+@{
+    ViewBag.Title = "Create-Branches";
+}
+@using (Html.BeginForm())
+{
+    <h4>Create New Branch:</h4>
+    <div class="form-group row mb-2">
+        @Html.LabelFor(b => b.BranchName, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+        <div class="col-5">
+            @Html.TextBoxFor(b => b.BranchName, new { @class = "form-control form-control-sm" })
+            @Html.ValidationMessageFor(b => b.BranchName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row mb-2">
+        @Html.LabelFor(b => b.BranchAddress, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+        <div class="col-5">
+            @Html.TextBoxFor(b => b.BranchAddress, new { @class = "form-control form-control-sm" })
+            @Html.ValidationMessageFor(b => b.BranchAddress, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row mb-4">
+
+        <div class="col-10 offset-2">
+            <button type="submit" class="btn btn-success">Save</button>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col">
+        <a href="@Url.Action("index", "Branches")"><i class="fa fa-backward"></i>Back to Index</a>
+    </div>
+</div>
+
+@section styles {
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+}
+@section scripts {
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+
+

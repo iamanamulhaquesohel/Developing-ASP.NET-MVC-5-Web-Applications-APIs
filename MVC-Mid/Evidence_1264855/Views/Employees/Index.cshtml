@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Evidence_1264855.Models.Employees>
+@using Evidence_1264855.Models.DbMetadata
+
+@{
+    ViewBag.Title = "Index-Employees";
+}
+    <div class="container mb-2">
+        <div class="row mb-2">
+            <div class="col">
+                <div class="display-6">Employee Lists:</div>
+                <div class="d-flex justify-content-end mb-1">
+                    <a href="@Url.Action("Create", "Employees")"><i class="fa fa-plus-square-o btn btn-outline-success "></i></a>
+
+                </div>
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr class="text-center">
+                            <th>Photo</th>
+                            <th>@Html.DisplayNameFor(e => e.EmployeeName)</th>
+                            <th>@Html.DisplayNameFor(e => e.EmployeePhone)</th>
+                            <th>@Html.DisplayNameFor(e => e.EmployeeDepartment)</th>
+                            <th>@Html.DisplayNameFor(e => e.EmployeeJoinDate)</th>
+                            <th>@Html.DisplayNameFor(e => e.Branches.BranchName)</th>
+                            <th>@Html.DisplayNameFor(e => e.Branches.BranchAddress)</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var em in Model)
+                        {
+                            <tr>
+                                <td><img src="~/Images/@em.EmployeePicture" width="40" class="img-thumbnail rounded-circle" /></td>
+                                <td>@Html.DisplayFor(e => em.EmployeeName)</td>
+                                <td>@Html.DisplayFor(e => em.EmployeePhone)</td>
+                                <td>@((Departments)em.EmployeeDepartment)</td>
+                                <td>@Html.DisplayFor(e => em.EmployeeJoinDate)</td>
+                                <td>@(em.Branches.BranchName)</td>
+                                <td>@(em.Branches.BranchAddress)</td>
+                                <td class="text-center"><a href="@Url.Action("Edit", "Employees", new { ID =em.EmployeeID })"><i class="fa fa-pencil-square-o btn btn-outline-success"></i></a></td>
+                                <td class="text-center"><a href="@Url.Action("Delete", "Employees", new { ID =em.EmployeeID })"><i class="fa fa-trash-o btn btn-outline-danger"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+@section styles {
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+
+}
+
+
