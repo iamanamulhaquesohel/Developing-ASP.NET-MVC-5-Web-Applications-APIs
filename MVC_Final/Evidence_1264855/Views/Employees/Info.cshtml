@@ -1,0 +1,103 @@
+﻿@model Evidence_1264855.Models.Employee
+@using Evidence_1264855.Models
+
+@{
+    ViewBag.Title = "Info";
+}
+
+<div class="container mb-2">
+    <h4>Employee Details:</h4>
+    <hr />
+
+    @using (Html.BeginForm("Info", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group row mb-2">
+                    <h4 class="text-center">Employee Photo:</h4>
+                    <img src="~/Uploads/@Model.EmployeePicture" width="200" class="img-thumbnail rounded-circle" />
+                </div>
+            </div>
+            <div class="col-8">
+                <table class="table">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">Employee Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Salary</th>
+                            <th scope="col">Branch</th>
+                        </tr>
+                    </thead>
+                    <tbody class="mb-2">
+                        <tr class="text-center">
+                            <td>@Model.EmployeeName</td>
+                            <td>@Model.EmployeePhone</td>
+                            <td>@Model.EmployeeSalary</td>
+                            <td>@Model.Branches.BranchName</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br /><br />
+                <table class="table">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">Join Date</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Job Running</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td>@Model.EmployeeJoinDate.ToString("yyyy-MM-dd")</td>
+                            <td>@((Gender)Model.EmployeeGender)</td>
+                            <td>@((Departments)Model.EmployeeDepartment)</td>
+                            <td>@Model.Continued</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    }
+        <div class="row">
+            <div class="col-5"></div>
+            <div class="col-7">
+                <div class="row">
+                    <div class="col-4">
+                        <a class="btn btn-outline-secondary" href="@Url.Action("index", "Employees")"><i class="fa fa-backward"></i>Back to Index</a>
+                    </div>
+                    <div class="col-4">
+                        @using (Html.BeginForm("Edit", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <a class="btn btn-outline-success" href="@Url.Action("Edit", "Employees", new { Id = @Model.EmployeeId })"><i class="fa fa-pencil-square-o"></i>Edit Employee</a>
+
+                        }
+                    </div>
+                    <div class="col-4">
+                        @using (Html.BeginForm("Delete", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <a class="btn btn-outline-danger" href="@Url.Action("Delete", "Employees", new { Id = @Model.EmployeeId })"><i class="fa fa-trash-o"></i>Delete Employee</a>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</div>
+
+@section styles {
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-datepicker.standalone.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+}
+@section scripts {
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+
+}
+
+

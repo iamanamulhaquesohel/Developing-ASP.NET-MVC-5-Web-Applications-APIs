@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Evidence_1264855.Models.Employee>
+@using Evidence_1264855.Models
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "Index-Employees";
+}
+<div class="container-fluid mb-2">
+    <div class="row mb-2">
+        <div class="col">
+            <div class="display-6">Employee Lists:</div>
+            <div class="d-flex justify-content-end mb-1">
+                <a href="@Url.Action("Create", "Employees")"><i class="fa fa-plus-square-o btn btn-outline-success "></i></a>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr class="text-center">
+                        <th>Photo</th>
+                        <th>@Html.DisplayNameFor(e => e.EmployeeName)</th>
+                        <th>@Html.DisplayNameFor(e => e.EmployeePhone)</th>
+                        <th>@Html.DisplayNameFor(e => e.EmployeeSalary)</th>
+                        <th>@Html.DisplayNameFor(e => e.EmployeeDepartment)</th>
+                        <th>@Html.DisplayNameFor(e => e.EmployeeJoinDate)</th>
+                        <th>@Html.DisplayNameFor(e => e.EmployeeGender)</th>
+                        <th>@Html.DisplayNameFor(e => e.Continued)</th>
+                        <th>@Html.DisplayNameFor(e => e.Branches.BranchName)</th>
+                        <th>Info/Edit/Delete</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var Employee in Model)
+                    {
+                        <tr class="text-center align-middle">
+                            <td><img src="~/Uploads/@Employee.EmployeePicture" class="img-thumbnail rounded-circle" width="40" /></td>
+                            <td>@Html.DisplayFor(e => Employee.EmployeeName)</td>
+                            <td>@Html.DisplayFor(e => Employee.EmployeePhone)</td>
+                            <td>@Html.DisplayFor(e => Employee.EmployeeSalary)</td>
+                            <td>@((Departments)Employee.EmployeeDepartment)</td>
+                            <td>@Html.DisplayFor(e => Employee.EmployeeJoinDate)</td>
+                            <td>@((Gender)Employee.EmployeeGender)</td>
+                            <td>@(Employee.Continued ? "Yes": "No")</td>
+                            <td>@(Employee.Branches.BranchName)</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Info", "Employees", new { Id =Employee.EmployeeId })"><i class="fa fa-info btn btn-outline-success"></i></a>
+                                <a href="@Url.Action("Edit", "Employees", new { Id =Employee.EmployeeId })"><i class="fa fa-pencil-square-o btn btn-outline-success"></i></a>
+                                <a href="@Url.Action("Delete", "Employees", new { Id =Employee.EmployeeId })"><i class="fa fa-trash-o btn btn-outline-danger"></i></a>
+                            </td>
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-end">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+            </div>
+        </div>
+    </div>
+</div>
+@section styles {
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+}
+
+

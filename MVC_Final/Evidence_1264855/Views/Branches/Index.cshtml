@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Evidence_1264855.Models.Branch>
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "Index-Branches";
+}
+
+<div class="container-fluid mb-2">
+    <div class="row mb-2">
+        <div class="col">
+            <div class="display-6">Branch Lists:</div>
+            <div class="d-flex justify-content-end mb-1">
+                <a href="@Url.Action("Create", "Branches")"><i class="fa fa-plus-square-o btn btn-outline-success "></i></a>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr class="text-center">
+                        <th>@Html.DisplayNameFor(b => b.BranchName)</th>
+                        <th>@Html.DisplayNameFor(b => b.BranchAddress)</th>
+                        <th>@Html.DisplayNameFor(b => b.BranchEmail)</th>
+                        <th>Edit/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var branch in Model)
+                    {
+                        <tr class="text-center">
+                            <td>@Html.DisplayFor(b => branch.BranchName)</td>
+                            <td>@Html.DisplayFor(b => branch.BranchAddress)</td>
+                            <td class="link-secondary">@Html.DisplayFor(b => branch.BranchEmail)</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Edit", "Branches", new { Id =branch.BranchId})"><i class="fa fa-pencil-square-o btn btn-outline-success"></i></a>
+                                <a href="@Url.Action("Delete", "Branches", new { Id =branch.BranchId})"><i class="fa fa-trash-o btn btn-outline-danger"></i></a>
+                            </td>
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-end">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles {
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+}
+

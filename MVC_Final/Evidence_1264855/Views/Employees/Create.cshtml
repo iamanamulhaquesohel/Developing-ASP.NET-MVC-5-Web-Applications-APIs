@@ -1,0 +1,108 @@
+﻿@model Evidence_1264855.Models.EmployeeCreateModel
+@using Evidence_1264855.Models
+
+@{
+    ViewBag.Title = "Create-Employees";
+}
+<div class="container mb-2">
+    @using (Html.BeginForm("Create", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <h4>Create New Employee:</h4>
+        <div class="form-group row mb-2">
+            @Html.LabelFor(e => e.EmployeeName, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+            <div class="col-5">
+                @Html.TextBoxFor(e => e.EmployeeName, new { @class = "form-control form-control-sm", @placeholder = "Enter Employee Name" })
+                @Html.ValidationMessageFor(e => e.EmployeeName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mb-2">
+            @Html.LabelFor(e => e.EmployeePhone, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+            <div class="col-5">
+                @Html.TextBoxFor(e => e.EmployeePhone, new { @class = "form-control form-control-sm", @placeholder = "Enter Phone" })
+                @Html.ValidationMessageFor(e => e.EmployeePhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mb-2">
+            @Html.LabelFor(e => e.EmployeeSalary, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+            <div class="col-5">
+                @Html.TextBoxFor(e => e.EmployeeSalary, new { @class = "form-control form-control-sm", @placeholder = "Enter Salary" })
+                @Html.ValidationMessageFor(e => e.EmployeeSalary, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mb-2">
+            @Html.LabelFor(e => e.EmployeeDepartment, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+            <div class="col-5">
+                @Html.EnumDropDownListFor(e => e.EmployeeDepartment, "Select Department", new { @class = "form-select form-select-sm" })
+                @Html.ValidationMessageFor(e => e.EmployeeDepartment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mb-2">
+            @Html.LabelFor(e => e.EmployeeJoinDate, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+            <div class="col-5">
+                @Html.TextBoxFor(e => e.EmployeeJoinDate, new { @class = "form-control form-control-sm", @placeholder = "Select Join Date" })
+                @Html.ValidationMessageFor(e => e.EmployeeJoinDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mb-2">
+            @Html.LabelFor(e => e.EmployeeGender, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+            <div class="col-5">
+                @Html.EnumDropDownListFor(e => e.EmployeeGender, "Select Gender", new { @class = "form-select form-select-sm" })
+                @Html.ValidationMessageFor(e => e.EmployeeGender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mb-2">
+            @Html.LabelFor(e => e.BranchId, new { @class = "col-form-label col-form-label-sm text-end col-2" })
+            <div class="col-5">
+                @Html.DropDownListFor(e => e.BranchId, new SelectList(ViewBag.Branches, "BranchId", "BranchName"), "Select Branch", new { @class = "form-select form-select-sm" })
+                @Html.ValidationMessageFor(e => e.BranchId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row my-1 align-middle">
+            <div class="col-4 offset-2">
+                <div class="form-check form-check-inline">
+                    @Html.CheckBoxFor(e => e.Continued, new { @class = "form-check-input" })
+                    @Html.LabelFor(e => e.Continued, new { @class = "form-check-label" })
+                </div>
+                @Html.ValidationMessageFor(e => e.Continued, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mb-2">
+            @Html.LabelFor(e => e.EmployeePicture, new { @class = "col-form-label col-form-label-sm text-end col-2" })
+            <div class="col-5">
+                @Html.TextBoxFor(e => e.EmployeePicture, new { @class = "form-control form-control-sm", type = "file" })
+                @Html.ValidationMessageFor(e => e.EmployeePicture, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row mb-4">
+            <div class="col-10 offset-2">
+                <button type="reset" class="btn btn-secondary">Reset</button>
+                <button type="submit" class="btn btn-success">Save</button>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-outline-secondary" href="@Url.Action("index", "Employees")"><i class="fa fa-backward"></i>Back to Index</a>
+        </div>
+    </div>
+</div>
+
+@section styles {
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-datepicker.standalone.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+}
+@section scripts {
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script>
+        $("#EmployeeJoinDate").datepicker({
+            format: 'yyyy-mm-dd'
+        });
+    </script>
+}
+
+
+

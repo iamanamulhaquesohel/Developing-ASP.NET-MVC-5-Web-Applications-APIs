@@ -1,0 +1,68 @@
+﻿@model Evidence_1264855.Models.Branch
+@{
+    ViewBag.Title = "Create-Branch";
+}
+<div class="container mb-2">
+    <div class="row">
+        <div class="col-12">
+            <h4>Create New Branch:</h4>
+            <div id="placeholder"></div>
+            @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "placeholder", OnSuccess = "onSuccess" }))
+            {
+                <div class="form-group row mb-2">
+                    @Html.LabelFor(b => b.BranchName, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+                    <div class="col-5">
+                        @Html.TextBoxFor(b => b.BranchName, new { @class = "form-control form-control-sm", @placeholder = "Enter Branch Name" })
+                        @Html.ValidationMessageFor(b => b.BranchName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    @Html.LabelFor(b => b.BranchAddress, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+                    <div class="col-5">
+                        @Html.TextBoxFor(b => b.BranchAddress, new { @class = "form-control form-control-sm", @placeholder = "Enter Branch Address" })
+                        @Html.ValidationMessageFor(b => b.BranchAddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    @Html.LabelFor(b => b.BranchEmail, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+                    <div class="col-5">
+                        @Html.TextBoxFor(x => x.BranchEmail, new { @class = "form-control form-control-sm ", type = "email", @placeholder = "Enter E-mail" })
+
+                        @Html.ValidationMessageFor(b => b.BranchEmail, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row mb-4">
+                    <div class="col-10 offset-2">
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-outline-secondary" href="@Url.Action("index", "Branches")"><i class="fa fa-backward"></i>Back to Index</a>
+        </div>
+    </div>
+</div>
+
+@section styles {
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+}
+@section scripts {
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function onSuccess() {
+            $("#form0").trigger('reset');
+        }
+    </script>
+    
+}
+
+
+

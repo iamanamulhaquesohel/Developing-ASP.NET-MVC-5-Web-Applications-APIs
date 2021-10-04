@@ -1,0 +1,58 @@
+﻿@model Evidence_1264855.Models.Branch
+@{
+    ViewBag.Title = "Delete-Branch";
+}
+<div class="container mb-2">
+    <div class="row">
+        <div class="col-12">
+            <h4>Delete Branch:</h4>
+            <div id="placeholder"></div>
+            @Html.ValidationSummary()
+            @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "placeholder" }))
+            {
+                @Html.HiddenFor(b => b.BranchId)
+                <div class="form-group row mb-2">
+                    @Html.LabelFor(b => b.BranchName, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+                    <div class="col-5">
+                        @Html.TextBoxFor(b => b.BranchName, new { @class = "form-control form-control-sm" })
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    @Html.LabelFor(b => b.BranchAddress, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+                    <div class="col-5">
+                        @Html.TextBoxFor(b => b.BranchAddress, new { @class = "form-control form-control-sm" })
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    @Html.LabelFor(b => b.BranchEmail, new { @class = "col-form-label col-form-label-sm col-2 text-end" })
+                    <div class="col-5">
+                        @Html.TextBoxFor(b => b.BranchEmail, new { @class = "form-control form-control-sm" })
+                    </div>
+                </div>
+                <div class="form-group row mb-4">
+                    <div class="col-10 offset-2">
+                        <button type="submit" class="btn btn-success">Confirm Delete</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-outline-secondary" href="@Url.Action("index", "Branches")"><i class="fa fa-backward"></i>Back to Index</a>
+        </div>
+    </div>
+</div>
+@section styles {
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+}
+@section scripts {
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}
+
+
+
