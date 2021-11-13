@@ -13,6 +13,7 @@ namespace Evidence_1264855.Controllers
 {
     public class EmployeesController : Controller
     {
+        //Context Instance
         readonly CompanyDbContext db = new CompanyDbContext();
         // GET: Employees
         public ActionResult Index(int page = 1)
@@ -20,7 +21,7 @@ namespace Evidence_1264855.Controllers
             var data = db.Employees.OrderBy(b => b.EmployeeId).ToPagedList(page, 4);
             return View(data);
         }
-
+        //Create
         public ActionResult Create()
         {
             ViewBag.Branches = db.Branches.ToList();
@@ -57,6 +58,7 @@ namespace Evidence_1264855.Controllers
             ViewBag.Branches = db.Branches.ToList();
             return View(emp);
         }
+        //Edit
         public ActionResult Edit(int Id)
         {
             ViewBag.Branches = db.Branches.ToList();
@@ -104,6 +106,7 @@ namespace Evidence_1264855.Controllers
             ViewBag.CurrentPic = d.EmployeePicture;
             return View(emp);
         }
+        //Delete
         public ActionResult Delete(int Id)
         {
             return View(db.Employees.First(e => e.EmployeeId == Id));
@@ -116,7 +119,7 @@ namespace Evidence_1264855.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        //Info
         public ActionResult Info(int Id)
         {
             return View(db.Employees.First(e => e.EmployeeId == Id));

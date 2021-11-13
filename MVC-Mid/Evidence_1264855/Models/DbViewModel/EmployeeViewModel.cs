@@ -7,6 +7,7 @@ using System.Web;
 
 namespace Evidence_1264855.Models.DbViewModel
 {
+    //Employee View Model
     public class EmployeeViewModel
     {
         public int EmployeeID { get; set; }

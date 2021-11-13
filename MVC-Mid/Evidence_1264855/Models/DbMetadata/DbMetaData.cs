@@ -6,8 +6,15 @@ using System.Web;
 
 namespace Evidence_1264855.Models.DbMetadata
 {
-    public enum Departments { IT = 1, Software, Accounts, HR }
-
+    //Enum Declartion
+    public enum Departments 
+    { 
+        IT = 1,
+        Software,
+        Accounts,
+        HR
+    }
+    //Branch Type partial Class
     public partial class BranchesType
     {
         [Display(Name = "Branch Code")]
@@ -17,7 +24,7 @@ namespace Evidence_1264855.Models.DbMetadata
         [Required, StringLength(100), Display(Name = "Branches Address")]
         public string BranchAddress { get; set; }
     }
-
+    //Employee Type partial Class
     public partial class EmployeesType
     {
         public int EmployeeID { get; set; }

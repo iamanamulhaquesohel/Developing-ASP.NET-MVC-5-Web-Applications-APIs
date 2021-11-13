@@ -8,9 +8,20 @@ using System.Web;
 
 namespace Evidence_1264855.Models
 {
-    public enum Departments { IT = 1, Software = 2, Accounts = 3, HR = 4 }
-    public enum Gender { Male = 1, Female = 2 }
-
+    //Declare Enum
+    public enum Departments 
+    {
+        IT = 1,
+        Software,
+        Accounts,
+        HR
+    }
+    public enum Gender 
+    { 
+        Male = 1,
+        Female
+    }
+    //Branch Class
     public class Branch
     {
         public Branch() 
@@ -28,6 +39,7 @@ namespace Evidence_1264855.Models
         public virtual ICollection<Employee> Employees { get; set; }
     }
 
+    //Employee Class
     public class Employee
     {
         public int EmployeeId { get; set; }
@@ -54,8 +66,10 @@ namespace Evidence_1264855.Models
         public virtual Branch Branches { get; set; }
     }
 
+    //DbContext Initial
     public class CompanyDbContext : DbContext 
     {
+        //DbInitializer Constructor
         public CompanyDbContext()
         {
             Database.SetInitializer(new DbInitializer());
@@ -66,8 +80,10 @@ namespace Evidence_1264855.Models
 
     public class DbInitializer : DropCreateDatabaseIfModelChanges<CompanyDbContext> 
     {
+        //Seed override method
         protected override void Seed(CompanyDbContext context)
         {
+            //Data object Create
             Branch data = new Branch
             {
                 BranchName = "Dhaka",

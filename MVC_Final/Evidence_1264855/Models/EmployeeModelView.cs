@@ -7,10 +7,12 @@ using System.Web;
 
 namespace Evidence_1264855.Models
 {
+    //Employee Create Model
     public class EmployeeCreateModel
     {
         public int EmployeeId { get; set; }
         [Required, Display(Name = "New Photo")]
+        //HttpPostedFileBase For Photo
         public HttpPostedFileBase EmployeePicture { get; set; }
         [Required, StringLength(50), Display(Name = "Employee Name")]
         public string EmployeeName { get; set; }
@@ -29,6 +31,7 @@ namespace Evidence_1264855.Models
         [Required, ForeignKey("Branches"), Display(Name = "Branch Name")]
         public int BranchId { get; set; }
     }
+    //Employee Edit Model
     public class EmployeeEditModel
     {
         public int EmployeeId { get; set; }

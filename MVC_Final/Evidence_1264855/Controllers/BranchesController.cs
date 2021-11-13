@@ -11,6 +11,7 @@ namespace Evidence_1264855.Controllers
 {
     public class BranchesController : Controller
     {
+        //Context instance
         readonly CompanyDbContext db = new CompanyDbContext();
         // GET: Branches
         public ActionResult Index(int page = 1)
@@ -18,6 +19,7 @@ namespace Evidence_1264855.Controllers
             var data = db.Branches.OrderBy(b => b.BranchId).ToPagedList(page, 4);
             return View(data);
         }
+        //Create
         public ActionResult Create()
         {
             return View();
@@ -33,6 +35,7 @@ namespace Evidence_1264855.Controllers
             }
             return PartialView("_MessegeCreatePartial", false);
         }
+        //Edit
         public ActionResult Edit(int Id)
         {
             return View(db.Branches.First(b => b.BranchId == Id));
@@ -48,6 +51,7 @@ namespace Evidence_1264855.Controllers
             }
             return PartialView("_MessegeUpdatePartial", false);
         }
+        //Delete
         public ActionResult Delete(int Id)
         {
             return View(db.Branches.First(b => b.BranchId == Id));

@@ -9,12 +9,14 @@ namespace Evidence_1264855.Controllers
 {
     public class BranchesController : Controller
     {
+        //Context set or Instance Create
         readonly CompanyDbContext db = new CompanyDbContext();
         // GET: Branches
         public ActionResult Index()
         {
             return View(db.Branches.ToList());
         }
+        //Create
         public ActionResult Create()
         {
             return View();
@@ -30,7 +32,7 @@ namespace Evidence_1264855.Controllers
             }
             return View();
         }
-
+        //Edit
         public ActionResult Edit(int ID)
         {
             return View(db.Branches.First(b => b.BranchID == ID));
@@ -46,7 +48,7 @@ namespace Evidence_1264855.Controllers
             }
             return View();
         }
-
+        //Delete
         public ActionResult Delete(int ID)
         {
             return View(db.Branches.First(b => b.BranchID == ID));

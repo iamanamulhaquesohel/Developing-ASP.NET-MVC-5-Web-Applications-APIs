@@ -12,13 +12,14 @@ namespace Evidence_1264855.Controllers
 {
     public class EmployeesController : Controller
     {
+        //Context set or Instance Create
         readonly CompanyDbContext db = new CompanyDbContext();
         // GET: Employees
         public ActionResult Index()
         {
             return View(db.Employees.ToList());
         }
-
+        //Create
         public ActionResult Create()
         {
             ViewBag.Branches = db.Branches.ToList();
@@ -43,7 +44,7 @@ namespace Evidence_1264855.Controllers
             ViewBag.Branches = db.Branches.ToList();
             return View();
         }
-
+        //Edit
         public ActionResult Edit(int ID)
         {
             ViewBag.Branches = db.Branches.ToList();
@@ -75,6 +76,7 @@ namespace Evidence_1264855.Controllers
             ViewBag.Branches = db.Branches.ToList();
             return View(e);
         }
+        //Delete
         public ActionResult Delete(int ID)
         {
             return View(db.Employees.First(e => e.EmployeeID == ID));
